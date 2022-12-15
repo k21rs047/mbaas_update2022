@@ -11,13 +11,14 @@
   <script src="keys.js"></script>
   <script>
     let ncmb = new NCMB(appKey, clientKey);
-    let UTdata = ncmb.DataStore("UpdateTest");
-    let key = "score";
+    let UTdata = ncmb.DataStore("Timer");
+    let time = "time";
+    //let sub = "subject";
 
-    function enterData() {
+    function enterTime() {
       let uTdata = new UTdata();
       let value = parseInt($("#data").val());
-      uTdata.set(key, value)
+      uTdata.set(time, value)
         .save()
         .then(function(results) {
           $("#display").removeClass();
@@ -30,6 +31,7 @@
           $("#display").html("enter fail");
         })
     }
+
 
     function fetchAll() {
       UTdata.fetchAll()

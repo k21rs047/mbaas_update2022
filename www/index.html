@@ -13,7 +13,7 @@
     let ncmb = new NCMB(appKey, clientKey);
     let UTdata = ncmb.DataStore("Timer");
     let time = "time";
-    //let sub = "subject";
+    let sub = "subject";
 
     function enterTime() {
       let uTdata = new UTdata();
@@ -31,6 +31,24 @@
           $("#display").html("enter fail");
         })
     }
+
+     function enterSubject() {
+        let uTdata = new UTdata();
+        let value2 = parseInt($("#data").val());
+        uTdata.set(subject, value)
+            .save()
+            .then(function(results) {
+            $("#display").removeClass();
+            $("#display").addClass("bg-success");
+            $("#display").html("enter success");
+            })
+            .catch(function(results) {
+            $("#display").removeClass();
+            $("#display").addClass("bg-warning");
+            $("#display").html("enter fail");
+            })
+    }
+
 
 
     function fetchAll() {
@@ -118,8 +136,10 @@
 <body>
   <h1 class="text-light bg-secondary">mbaas update</h1>
   <div>
-    <input type="text" id="data" placeholder="スコア">
-    <a onclick="enterData()" class="btn btn-outline-secondary" role="button">Enter</a>
+    <input type="text" id="data" placeholder="時間(分)">
+    <a onclick="enterTime()" class="btn btn-outline-secondary" role="button">Enter</a>
+    <input type="text" id="data" placeholder="教科">
+    <a onclick="enterSubject()" class="btn btn-outline-secondary" role="button">Enter</a>
   </div>
   <div>
     <a onclick="fetchAll()" class="btn btn-outline-secondary" role="buton">Fetch All</a>

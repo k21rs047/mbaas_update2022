@@ -17,7 +17,7 @@
 
     function enterTime() {
       let uTdata = new UTdata();
-      let value = parseInt($("#time").val());
+      let value = parseInt($("#data").val());
       uTdata.set(time, value)
         .save()
         .then(function(results) {
@@ -34,7 +34,7 @@
     //enterSubjectが反応しないため、ボタンの部分を含め見ること
      function enterSubject() {
         let uTdata = new UTdata(); 
-        let val1 = parseInt($("#subject").val());
+        let val1 = parseInt($("#data2").val());
         uTdata.set(field1, val1)
             .save()
             .then(function(results) {
@@ -139,7 +139,7 @@
   <div>
     <input type="text" id="data" placeholder="時間(分)">
     <a onclick="enterTime()" class="btn btn-outline-secondary" role="button">Enter</a>
-    <input type="text" id="data" placeholder="教科">
+    <input type="text" id="data2" placeholder="教科">
     <a onclick="enterSubject()" class="btn btn-outline-secondary" role="button">Enter</a>
   </div>
   <div>

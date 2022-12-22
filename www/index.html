@@ -13,7 +13,7 @@
     let ncmb = new NCMB(appKey, clientKey);
     let UTdata = ncmb.DataStore("Timer");
     let time = "time";
-    let sub = "subject";
+    let field1 = "subject";
 
     function enterTime() {
       let uTdata = new UTdata();
@@ -33,9 +33,9 @@
     }
     //enterSubjectが反応しないため、ボタンの部分を含め見ること
      function enterSubject() {
-        let uTdata = new UTdata(); //uTdataは変えた方がいい？
-        let sub = parseInt($("#subject").val());
-        uTdata.set(subject, sub)
+        let uTdata = new UTdata(); 
+        let val1 = parseInt($("#subject").val());
+        uTdata.set(field1, val1)
             .save()
             .then(function(results) {
             $("#display").removeClass();
@@ -70,6 +70,7 @@
         })
     }
 
+//sortData()はOK
     function sortData() {
        UTdata.order(time, true).fetchAll()
         .then(function(results) {

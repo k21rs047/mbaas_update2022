@@ -17,7 +17,7 @@
 
     function enterTime() {
       let uTdata = new UTdata();
-      let value = parseInt($("#data").val());
+      let value = parseInt($("#time").val());
       uTdata.set(time, value)
         .save()
         .then(function(results) {
@@ -31,11 +31,11 @@
           $("#display").html("enter fail");
         })
     }
-
+    //enterSubjectが反応しないため、ボタンの部分を含め見ること
      function enterSubject() {
         let uTdata = new UTdata();
-        let value2 = parseInt($("#data").val());
-        uTdata.set(subject, value)
+        let sub = parseInt($("#subject").val());
+        uTdata.set(subject, sub)
             .save()
             .then(function(results) {
             $("#display").removeClass();

@@ -62,7 +62,7 @@
         .then(function(results) {
           let msg = "";
           for (let i = 0; i < results.length; i++) {
-            msg += results[i].get(time) + "<br>";
+            msg += results[i].get(field1) + " "  + results[i].get(time) + "分" + "<br>";
           }
           $("#display").removeClass();
           $("#display").addClass("text-light");
@@ -111,7 +111,7 @@
   </div>
   <div>
     <a onclick="fetchAll()" class="btn btn-outline-secondary" role="buton">Fetch All</a>
-    <a onclick="sortData()" class="btn btn-outline-secondary" role="button">Sort</a>
+    <a onclick="sortData()" class="btn btn-outline-secondary" role="button">Time Order</a>
     <a onclick="countData()" class="btn btn-outline-primary" role="button">Count</a>
     <a onclick="deleteData()" class="btn btn-outline-secondary" role="buton">Delete</a>
   </div>

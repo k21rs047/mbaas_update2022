@@ -15,27 +15,13 @@
     let time = "time";
     let field1 = "subject";
 
-    function enterTime() {
-      let uTdata = new UTdata();
-      let value = parseInt($("#data").val());
-      uTdata.set(time, value)
-        .save()
-        .then(function(results) {
-          $("#display").removeClass();
-          $("#display").addClass("bg-success");
-          $("#display").html("enter success");
-        })
-        .catch(function(results) {
-          $("#display").removeClass();
-          $("#display").addClass("bg-warning");
-          $("#display").html("enter fail");
-        })
-    }
     //enterSubjectが反応しないため、ボタンの部分を含め見ること
-     function enterSubject() {
+     function enter() {
         let uTdata = new UTdata(); 
         let val1 = ($("#data2").val());
         uTdata.set(field1, val1)
+        let value = parseInt($("#data").val());
+        uTdata.set(time, value)
             .save()
             .then(function(results) {
             $("#display").removeClass();
@@ -138,9 +124,9 @@
   <h1 class="text-light bg-secondary">mbaas update</h1>
   <div>
     <input type="text" id="data" placeholder="時間(分)">
-    <a onclick="enterTime()" class="btn btn-outline-secondary" role="button">Enter</a>
+    <a onclick="enter()" class="btn btn-outline-secondary" role="button">Enter</a>
     <input type="text" id="data2" placeholder="教科">
-    <a onclick="enterSubject()" class="btn btn-outline-secondary" role="button">Enter</a>
+    <a onclick="enter()" class="btn btn-outline-secondary" role="button">Enter</a>
   </div>
   <div>
     <a onclick="fetchAll()" class="btn btn-outline-secondary" role="buton">Fetch All</a>

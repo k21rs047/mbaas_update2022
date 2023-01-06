@@ -34,7 +34,7 @@
     //enterSubjectが反応しないため、ボタンの部分を含め見ること
      function enterSubject() {
         let uTdata = new UTdata(); 
-        let val1 = parseInt($("#data2").val());
+        let val1 = ($("#data2").val());
         uTdata.set(field1, val1)
             .save()
             .then(function(results) {

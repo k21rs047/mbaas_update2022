@@ -10,6 +10,83 @@
   <link rel="stylesheet" href="css/style.css">
   <script src="keys.js"></script>
   <script>
+//ここからタイマー処理に関して
+     $(function() {
+            setInterval(function() {
+                timer();
+            }, 500);
+        });
+
+        // ready クリックの処理の登録
+    $(function() {
+        $('#date').click(function(e) {
+                setDebugMode(e);
+            });
+
+            $('#btnA').click(function(e) {
+                btnAClick(e);
+            });
+            init();
+        });
+
+        var debug = false;
+        // Statusがクリックされた時の処理
+        function setDebugMode(e) {
+            debug = !debug;
+            $("#status").html("Debug Mode: " + debug);
+        }
+        function analog(rest) {
+            var h = parseInt(rest / 3600);
+            var m = parseInt((rest - h * 3600) / 60);
+            var s = parseInt(rest - h * 3600 - m * 60);
+        }
+
+        var active = false;
+        var startTime = 0;
+        var period = 0;
+
+        var sound1 = new Audio();
+        sound1.src = "MB.mp3";
+        var sound2 = new Audio();
+        sound2.src = "Xylo.mp3";
+
+        function init() {
+            $('#btnA').prop('disabled', false);
+            $('#btnB').prop('disabled', false);
+        }
+
+        function btnAClick(e) {
+            active = true;
+            startTime = new Date();
+            sound2.play();
+            sound2.currentTime = 0;
+            sound1.pause();
+            /*sound2.addEventListener("ended", function () {
+          }, false);
+        */}
+
+        function btnBClick(e) {
+            active = false;
+           // startTime = new Date();
+            sound1.play();
+            sound1.currentTime = 0;
+            sound2.pause();
+        }
+
+         function timer() {
+            if (active) {
+                var timen = parseInt((new Date() - startTime) / 1000);
+                var rest = period - timen;
+                var m = parseInt(rest / 60);
+                var s = parseInt(rest - m * 60);
+                $("#timen").html(timen);
+        }
+    }
+
+
+
+
+//ここから二フクラ系      
     let ncmb = new NCMB(appKey, clientKey);
     let UTdata = ncmb.DataStore("Timer");
     let time = "time";
@@ -128,12 +205,11 @@
         })
     }
 
-//createDateで追加順にフェッチし新しいのから削除できるように,11回目参考に
   </script>
 </head>
 
 <body>
-  <h1 class="text-light bg-secondary">mbaas update</h1>
+  <h1 class="text-light bg-secondary">Register</h1>
   <div>
     <input type="text" id="data" placeholder="時間(分)">
     <br>
@@ -143,11 +219,16 @@
   <div>
     <a onclick="sortData()" class="btn btn-outline-secondary" role="button">Time Order</a>
     <a onclick="showData()" class="btn btn-outline-secondary" role="button">Show Date</a>
-    <a onclick="countData()" class="btn btn-outline-primary" role="button">Count</a>
+    <a onclick="countData()" class="btn btn-outline-secondary" role="button">Count</a>
     <a onclick="deleteData()" class="btn btn-outline-secondary" role="buton">Delete</a>
-  </div>
-  <div id="display" class="text-light bg-info">
+    <div id="display" class="text-light bg-info">
     Results
+  </div>
+  <br><br>
+    <h1 class="text-light bg-secondary">Time</h1>
+    <div id="timen">Time</div>
+     <a onclick="btnAClick()" class="btn btn-outline-primary" role="button">Start</a>
+     <a onclick="btnBClick()" class="btn btn-outline-primary" role="button">Stop</a>
   </div>
 </body>
 

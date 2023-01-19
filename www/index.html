@@ -14,6 +14,7 @@
     let UTdata = ncmb.DataStore("Timer");
     let time = "time";
     let field1 = "subject";
+    let createDate = "createDate";
 
     //enterはOK
      function enter() {
@@ -76,6 +77,25 @@
         })
     }
 
+    function showData() {
+       UTdata.order(createDate, true).fetchAll()
+        .then(function(results) {
+          let msg = "";
+          for (let i = 0; i < results.length; i++) {
+            msg += results[i].get(field1) + " "  + results[i].get(time) + "分" + "<br>";
+          }
+          $("#display").removeClass();
+          $("#display").addClass("text-light");
+          $("#display").addClass("bg-primary");
+          $("#display").html(msg);
+        })
+        .catch(function(error) {
+          $("#display").removeClass();
+          $("#display").addClass("bg-warning");
+          $("#display").html("delete fail:" + JSON.stringify(error));
+        })
+    }
+
     function countData() {
     UTdata.count().fetchAll()
     .then(function(results){
@@ -91,7 +111,7 @@
     }
 
     function deleteData() {
-       UTdata.fetch()
+       UTdata.order(createDate, true).fetch()
         .then(function(results){
            return results.delete();
         })
@@ -108,6 +128,7 @@
         })
     }
 
+//createDateで追加順にフェッチし新しいのから削除できるように,11回目参考に
   </script>
 </head>
 
@@ -121,6 +142,7 @@
   </div>
   <div>
     <a onclick="sortData()" class="btn btn-outline-secondary" role="button">Time Order</a>
+    <a onclick="showData()" class="btn btn-outline-secondary" role="button">Show Date</a>
     <a onclick="countData()" class="btn btn-outline-primary" role="button">Count</a>
     <a onclick="deleteData()" class="btn btn-outline-secondary" role="buton">Delete</a>
   </div>

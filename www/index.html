@@ -35,15 +35,15 @@
             debug = !debug;
             $("#status").html("Debug Mode: " + debug);
         }
-        function analog(rest) {
+       
+       /* function analog(rest) {
             var h = parseInt(rest / 3600);
             var m = parseInt((rest - h * 3600) / 60);
             var s = parseInt(rest - h * 3600 - m * 60);
-        }
+        }*/
 
         var active = false;
         var startTime = 0;
-        var period = 0;
 
         var sound1 = new Audio();
         sound1.src = "MB.mp3";
@@ -61,13 +61,11 @@
             sound2.play();
             sound2.currentTime = 0;
             sound1.pause();
-            /*sound2.addEventListener("ended", function () {
-          }, false);
-        */}
+        }
 
         function btnBClick(e) {
             active = false;
-           // startTime = new Date();
+           startTime = new Date();
             sound1.play();
             sound1.currentTime = 0;
             sound2.pause();
@@ -76,11 +74,16 @@
          function timer() {
             if (active) {
                 var timen = parseInt((new Date() - startTime) / 1000);
-                var rest = period - timen;
+                var rest = timen;
                 var m = parseInt(rest / 60);
                 var s = parseInt(rest - m * 60);
-                $("#timen").html(timen);
-        }
+                if(timen < 60){
+                     $("#timen").html(s + "秒");
+                } else {
+                     $("#timen").html(m + "分" + s + "秒");
+                }
+            }
+        
     }
 
 

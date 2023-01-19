@@ -59,7 +59,7 @@
 
 //sortData()はOK
     function sortData() {
-       UTdata.order(time, true).fetchAll()
+       UTdata.order(time, true).limit(10).fetchAll()
         .then(function(results) {
           let msg = "";
           for (let i = 0; i < results.length; i++) {
@@ -78,7 +78,7 @@
     }
 
     function showData() {
-       UTdata.order(createDate, true).fetchAll()
+       UTdata.order(createDate, true).limit(10).fetchAll()
         .then(function(results) {
           let msg = "";
           for (let i = 0; i < results.length; i++) {
